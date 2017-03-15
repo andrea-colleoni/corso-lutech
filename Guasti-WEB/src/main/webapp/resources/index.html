@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Questa è la mia APP</title>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+</head>
+<body>
+	<button id="btnCaricaSegnalazioni">Carica le segnalazioni</button>
+	<table id="tblSegnalazioni"></table>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script>
+		$('#btnCaricaSegnalazioni').click(function() {
+			$.ajax({
+				url: '/segnalazioni',
+				method: 'get'
+			})
+			.done(function(risposta) {
+				console.log(risposta);
+				$('#tblSegnalazioni').DataTable({
+					data: risposta,
+					columns: [{
+						title: 'Oggetto',
+						data: 'oggetto'
+					},{
+						title: 'Segnalatore',
+						data: 'segnalatore.username'
+					}]
+				});
+			})
+			.fail(function() {
+				alert('Qualcosa è andato male');
+			});
+		});
+	</script>
+</body>
+</html>
