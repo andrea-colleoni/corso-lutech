@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Segnalazione {
@@ -25,8 +26,10 @@ public class Segnalazione {
 	private Date dataOraApertura;
 	
 	@ManyToOne
+	@XmlTransient
 	private Utente segnalatore;
 	@ManyToOne
+	@XmlTransient
 	private Utente manutentore;
 	
 	

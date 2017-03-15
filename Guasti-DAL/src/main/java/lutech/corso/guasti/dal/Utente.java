@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,9 +27,11 @@ public class Utente {
 	
 	@OneToMany(mappedBy="segnalatore", cascade=CascadeType.ALL)
 	@JsonIgnore
+	@XmlTransient
 	private List<Segnalazione> segnalazioniProprietario;
 	@OneToMany(mappedBy="manutentore")
 	@JsonIgnore
+	@XmlTransient
 	private List<Segnalazione> segnalazioniManutentore;
 	
 	public void addSegnalazioneProprietario(Segnalazione s) {
